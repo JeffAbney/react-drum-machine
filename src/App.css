@@ -10,6 +10,9 @@
 }
 
 .display{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 30px;
 	width: 100px;
 	background-color: green;
