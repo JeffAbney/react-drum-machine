@@ -19,60 +19,100 @@ class App extends Component {
 			power: true,
 			input: "",
 			sound: "",
+			volume: 1.0,
 		}
 
 		this.handleClick = this.handleClick.bind(this);
 		this.handleKeyPress = this.handleKeyPress.bind(this);
+		this.togglePower = this.togglePower.bind(this);
+		this.handleSlide = this.handleSlide.bind(this);
 
 		this.drumKey = {
 			q: "Clap",
-			w: "hiHat",
-			e: "hiHat0",
-			a: "hiHat1",
-			s: "hiHat2",
-			d: "kick",
-			z: "lowTom1",
-			x: "lowTom2",
-			c: "snare",
+			w: "HiHat",
+			e: "HiHat0",
+			a: "HiHat1",
+			s: "HiHat2",
+			d: "Kick",
+			z: "LowTom1",
+			x: "LowTom2",
+			c: "Snare",
 		}
+
+		
 	}
 
 	componentDidMount() {
     document.addEventListener('keypress', this.handleKeyPress);
+
   }
   	componentWillUnmount() {
     document.removeEventListener('keypress', this.handleKeyPress);
   }
 
 	handleClick(key){
-		this.setState({
-			sound: key,
-			input: this.drumKey[key],
-		});
-		document.getElementById(key).play();
+		if (this.state.power) {
+			this.setState({
+				sound: key,
+				input: this.drumKey[key],
+			});
+			document.getElementById(key).volume = this.state.volume;
+			document.getElementById(key).play();
+		} else {
+			this.setState({
+				input: "Power is off",
+			})
+		}
 	}
 
 	handleKeyPress(event){
+		let keyTest = /[qweasdzxc]/.test(event.key);
+		if (keyTest){
 		this.setState({
 			sound: event.key,
 			input: this.drumKey[event.key],
 		});
+		document.getElementById(event.key).volume = this.state.volume;
 		document.getElementById(event.key).play();
+		}
+		else{ }	
 	}
+
+	togglePower(){
+		if(!this.state.power){
+			this.setState({
+				input: "Power is on"
+			})
+		}
+		this.setState({
+			power: !this.state.power,
+		})
+	}
+
+	handleSlide(event){
+		this.setState({
+			volume: event.target.value/10,
+		});
+	}
+
+
 
   render() {
 
     return (
       <div className="App" id="drum-machine">
-        <div className="display" id="display">
-        	<p>{this.state.input}</p>
-        </div>
+      	<div className="header">
+      		<button type="button" className="power-btn" onClick={this.togglePower} style={(this.state.power)?{backgroundColor: "green"}:{backgroundColor: "red"}}>{this.state.power ? "ON" : "OFF"}</button>
+        	<div className="display" id="display">
+        		<p>{this.state.input}</p>
+        	</div>
+        </div> 
         <div className="drum-pad-container">
         	<div className="drum-pad" onClick={() => {this.handleClick("q")}} id="dp-q">Q
-        		<audio src={clap} className="clip" id="q" preload="auto"/>
+        		<audio src={clap} className="clip" id="q" preload="auto" volume="0.1" />
         	</div>
         	<div className="drum-pad" onClick={() => {this.handleClick("w")}} id="dp-w">W
-        		<audio src={hiHat} className="clip" id="w" preload="auto"/>
+        		<audio src={hiHat} className="clip" id="w" preload="auto" volume="0.1"/>
         	</div>
         	<div className="drum-pad" onClick={() => {this.handleClick("e")}} id="dp-e">E
         		<audio src={hiHat0} className="clip" id="e"  preload="auto"/>
@@ -96,6 +136,10 @@ class App extends Component {
         		<audio src={snare} className="clip" id="c"  preload="auto"/>
         	</div>
         </div>
+
+        <label htmlFor="volume">Volume</label>
+    	<input type="range" id="start" name="volume" min="0" max="10" onChange={this.handleSlide}/>
+
       </div>
     );
   }
