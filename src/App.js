@@ -18,12 +18,22 @@ class App extends Component {
 		this.state = {
 			power: true,
 			input: "",
-			sound: "",
 			volume: 1.0,
+			q: false,
+			w: false,
+			e: false,
+			a: false,
+			s: false,
+			d: false,
+			z: false,
+			x: false,
+			c: false,
 		}
 
-		this.handleClick = this.handleClick.bind(this);
+		this.handleMouseDown = this.handleMouseDown.bind(this);
+		this.handleMouseUp = this.handleMouseUp.bind(this);
 		this.handleKeyPress = this.handleKeyPress.bind(this);
+		this.handleKeyUp = this.handleKeyUp.bind(this);
 		this.togglePower = this.togglePower.bind(this);
 		this.handleSlide = this.handleSlide.bind(this);
 
@@ -43,20 +53,23 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-    document.addEventListener('keypress', this.handleKeyPress);
-
+    document.addEventListener('keydown', this.handleKeyPress);
+    document.addEventListener('keyup', this.handleKeyUp);
   }
   	componentWillUnmount() {
-    document.removeEventListener('keypress', this.handleKeyPress);
+    document.removeEventListener('keydown', this.handleKeyPress);
+    document.addEventListener('keyup', this.handleKeyUp);
   }
 
-	handleClick(key){
+	handleMouseDown(key){
 		if (this.state.power) {
 			this.setState({
-				sound: key,
 				input: this.drumKey[key],
+				[key]: true,
 			});
 			document.getElementById(key).volume = this.state.volume;
+			document.getElementById(key).pause();
+			document.getElementById(key).currentTime =0;
 			document.getElementById(key).play();
 		} else {
 			this.setState({
@@ -65,17 +78,39 @@ class App extends Component {
 		}
 	}
 
-	handleKeyPress(event){
-		let keyTest = /[qweasdzxc]/.test(event.key);
-		if (keyTest){
+	handleMouseUp(event){
 		this.setState({
-			sound: event.key,
-			input: this.drumKey[event.key],
-		});
-		document.getElementById(event.key).volume = this.state.volume;
-		document.getElementById(event.key).play();
+			q: false,
+			w: false,
+			e: false,
+			a: false,
+			s: false,
+			d: false,
+			z: false,
+			x: false,
+			c: false,
+		})
+	}
+
+	handleKeyPress(event){
+		if (this.state.power){
+			let keyTest = /[qweasdzxc]/.test(event.key);
+			if (keyTest){
+			this.setState({
+				input: this.drumKey[event.key],
+				[event.key]: true,
+			});
+			document.getElementById(event.key).volume = this.state.volume;
+			document.getElementById(event.key).pause();
+			document.getElementById(event.key).currentTime =0;
+			document.getElementById(event.key).play();
+			
+			} else{ }	
+		} else {
+			this.setState({
+				input: "Power is off",
+			})
 		}
-		else{ }	
 	}
 
 	togglePower(){
@@ -95,6 +130,20 @@ class App extends Component {
 		});
 	}
 
+	handleKeyUp(event){
+		this.setState({
+			q: false,
+			w: false,
+			e: false,
+			a: false,
+			s: false,
+			d: false,
+			z: false,
+			x: false,
+			c: false,
+		})
+	}
+
 
 
   render() {
@@ -108,31 +157,31 @@ class App extends Component {
         	</div>
         </div> 
         <div className="drum-pad-container">
-        	<div className="drum-pad" onClick={() => {this.handleClick("q")}} id="dp-q">Q
+        	<div className={"drum-pad active-" + this.state.q} onMouseDown={() => {this.handleMouseDown("q")}} onMouseUp={this.handleMouseUp} id="dp-q">Q
         		<audio src={clap} className="clip" id="q" preload="auto" volume="0.1" />
         	</div>
-        	<div className="drum-pad" onClick={() => {this.handleClick("w")}} id="dp-w">W
+        	<div className={"drum-pad active-" + this.state.w} onMouseDown={() => {this.handleMouseDown("w")}} onMouseUp={this.handleMouseUp} id="dp-w">W
         		<audio src={hiHat} className="clip" id="w" preload="auto" volume="0.1"/>
         	</div>
-        	<div className="drum-pad" onClick={() => {this.handleClick("e")}} id="dp-e">E
+        	<div className={"drum-pad active-" + this.state.e} onMouseDown={() => {this.handleMouseDown("e")}} onMouseUp={this.handleMouseUp} id="dp-e">E
         		<audio src={hiHat0} className="clip" id="e"  preload="auto"/>
         	</div>
-        	<div className="drum-pad" onClick={() => {this.handleClick("a")}} id="dp-a">A
+        	<div className={"drum-pad active-" + this.state.a} onMouseDown={() => {this.handleMouseDown("a")}} onMouseUp={this.handleMouseUp} id="dp-a">A
         		<audio src={hiHat1} className="clip" id="a"  preload="auto"/>
         	</div>
-        	<div className="drum-pad" onClick={() => {this.handleClick("s")}} id="dp-s">S
+        	<div className={"drum-pad active-" + this.state.s} onMouseDown={() => {this.handleMouseDown("s")}} onMouseUp={this.handleMouseUp} id="dp-s">S
         		<audio src={hiHat2} className="clip" id="s"  preload="auto"/>
         	</div>
-        	<div className="drum-pad" onClick={() => {this.handleClick("d")}} id="dp-d">D
+        	<div className={"drum-pad active-" + this.state.d} onMouseDown={() => {this.handleMouseDown("d")}} onMouseUp={this.handleMouseUp} id="dp-d">D
         		<audio src={kick} className="clip" id="d"  preload="auto"/>
         	</div>
-        	<div className="drum-pad" onClick={() => {this.handleClick("z")}} id="dp-z">Z
+        	<div className={"drum-pad active-" + this.state.z} onMouseDown={() => {this.handleMouseDown("z")}} onMouseUp={this.handleMouseUp} id="dp-z">Z
         		<audio src={lowTom1} className="clip" id="z"  preload="auto"/>
         	</div>
-        	<div className="drum-pad" onClick={() => {this.handleClick("x")}} id="dp-x">X
+        	<div className={"drum-pad active-" + this.state.x} onMouseDown={() => {this.handleMouseDown("x")}} onMouseUp={this.handleMouseUp} id="dp-x">X
         		<audio src={lowTom2} className="clip" id="x"  preload="auto"/>
         	</div>
-        	<div className="drum-pad" onClick={() => {this.handleClick("c")}} id="dp-c">C
+        	<div className={"drum-pad active-" + this.state.c} onMouseDown={() => {this.handleMouseDown("c")}} onMouseUp={this.handleMouseUp} id="dp-c">C
         		<audio src={snare} className="clip" id="c"  preload="auto"/>
         	</div>
         </div>

@@ -54,7 +54,17 @@
 	height: 65px;
 	width: 65px;
 	background-color: blue;
+	border-top: 3px solid grey;
+	border-right: 4px solid darkblue;
+	border-bottom: 3px solid black;
+	border-left: 4px solid grey;
 }
+	.active-true{
+		border-top: 5px solid grey;
+		border-right: 4px solid grey;
+		border-bottom: 3px solid grey;
+		border-left: 6px solid grey;
+	}
 	#dp-q{
 		grid-area: q;
 	}
