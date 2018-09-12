@@ -19,15 +19,15 @@ class App extends Component {
 			power: true,
 			input: "",
 			volume: 1.0,
-			q: false,
-			w: false,
-			e: false,
-			a: false,
-			s: false,
-			d: false,
-			z: false,
-			x: false,
-			c: false,
+			Q: false,
+			W: false,
+			E: false,
+			A: false,
+			S: false,
+			D: false,
+			Z: false,
+			X: false,
+			C: false,
 		}
 
 		this.handleMouseDown = this.handleMouseDown.bind(this);
@@ -38,15 +38,15 @@ class App extends Component {
 		this.handleSlide = this.handleSlide.bind(this);
 
 		this.drumKey = {
-			q: "Clap",
-			w: "HiHat",
-			e: "HiHat0",
-			a: "HiHat1",
-			s: "HiHat2",
-			d: "Kick",
-			z: "LowTom1",
-			x: "LowTom2",
-			c: "Snare",
+			Q: "Clap",
+			W: "HiHat",
+			E: "HiHat0",
+			A: "HiHat1",
+			S: "HiHat2",
+			D: "Kick",
+			Z: "LowTom1",
+			X: "LowTom2",
+			X: "Snare",
 		}
 
 		
@@ -80,21 +80,21 @@ class App extends Component {
 
 	handleMouseUp(event){
 		this.setState({
-			q: false,
-			w: false,
-			e: false,
-			a: false,
-			s: false,
-			d: false,
-			z: false,
-			x: false,
-			c: false,
+			Q: false,
+			W: false,
+			E: false,
+			A: false,
+			S: false,
+			D: false,
+			Z: false,
+			X: false,
+			C: false,
 		})
 	}
 
 	handleKeyPress(event){
 		if (this.state.power){
-			let keyTest = /[qweasdzxc]/.test(event.key);
+			const keyTest = /[QWEASDZXC]/.test(event.key);
 			if (keyTest){
 			this.setState({
 				input: this.drumKey[event.key],
@@ -114,14 +114,17 @@ class App extends Component {
 	}
 
 	togglePower(){
-		if(!this.state.power){
+		if(this.state.power){
 			this.setState({
+				power: !this.state.power,
+				input: "Power is off"
+			});
+		} else {
+			this.setState({
+				power: !this.state.power,
 				input: "Power is on"
-			})
+			});
 		}
-		this.setState({
-			power: !this.state.power,
-		})
 	}
 
 	handleSlide(event){
@@ -132,15 +135,15 @@ class App extends Component {
 
 	handleKeyUp(event){
 		this.setState({
-			q: false,
-			w: false,
-			e: false,
-			a: false,
-			s: false,
-			d: false,
-			z: false,
-			x: false,
-			c: false,
+			Q: false,
+			W: false,
+			E: false,
+			A: false,
+			S: false,
+			D: false,
+			Z: false,
+			X: false,
+			C: false,
 		})
 	}
 
@@ -151,44 +154,46 @@ class App extends Component {
     return (
       <div className="App" id="drum-machine">
       	<div className="header">
-      		<button type="button" className="power-btn" onClick={this.togglePower} style={(this.state.power)?{backgroundColor: "green"}:{backgroundColor: "red"}}>{this.state.power ? "ON" : "OFF"}</button>
+      		<button type="button" className="power-btn" onClick={this.togglePower} style={(this.state.power)?{backgroundColor: "#2ec4b6"}:{backgroundColor: "#ff3366"}}>{this.state.power ? "ON" : "OFF"}</button>
         	<div className="display" id="display">
         		<p>{this.state.input}</p>
         	</div>
         </div> 
         <div className="drum-pad-container">
-        	<div className={"drum-pad active-" + this.state.q} onMouseDown={() => {this.handleMouseDown("q")}} onMouseUp={this.handleMouseUp} id="dp-q">Q
-        		<audio src={clap} className="clip" id="q" preload="auto" volume="0.1" />
+        	<div className={"drum-pad active-" + this.state.Q} onMouseDown={() => {this.handleMouseDown("Q")}} onMouseUp={this.handleMouseUp} id="dp-Q">Q
+        		<audio src={clap} className="clip" id="Q" preload="auto" volume="0.1" />
         	</div>
-        	<div className={"drum-pad active-" + this.state.w} onMouseDown={() => {this.handleMouseDown("w")}} onMouseUp={this.handleMouseUp} id="dp-w">W
-        		<audio src={hiHat} className="clip" id="w" preload="auto" volume="0.1"/>
+        	<div className={"drum-pad active-" + this.state.W} onMouseDown={() => {this.handleMouseDown("W")}} onMouseUp={this.handleMouseUp} id="dp-W">W
+        		<audio src={hiHat} className="clip" id="W" preload="auto" volume="0.1"/>
         	</div>
-        	<div className={"drum-pad active-" + this.state.e} onMouseDown={() => {this.handleMouseDown("e")}} onMouseUp={this.handleMouseUp} id="dp-e">E
-        		<audio src={hiHat0} className="clip" id="e"  preload="auto"/>
+        	<div className={"drum-pad active-" + this.state.E} onMouseDown={() => {this.handleMouseDown("E")}} onMouseUp={this.handleMouseUp} id="dp-E">E
+        		<audio src={hiHat0} className="clip" id="E"  preload="auto"/>
         	</div>
-        	<div className={"drum-pad active-" + this.state.a} onMouseDown={() => {this.handleMouseDown("a")}} onMouseUp={this.handleMouseUp} id="dp-a">A
-        		<audio src={hiHat1} className="clip" id="a"  preload="auto"/>
+        	<div className={"drum-pad active-" + this.state.A} onMouseDown={() => {this.handleMouseDown("A")}} onMouseUp={this.handleMouseUp} id="dp-A">A
+        		<audio src={hiHat1} className="clip" id="A"  preload="auto"/>
         	</div>
-        	<div className={"drum-pad active-" + this.state.s} onMouseDown={() => {this.handleMouseDown("s")}} onMouseUp={this.handleMouseUp} id="dp-s">S
-        		<audio src={hiHat2} className="clip" id="s"  preload="auto"/>
+        	<div className={"drum-pad active-" + this.state.S} onMouseDown={() => {this.handleMouseDown("S")}} onMouseUp={this.handleMouseUp} id="dp-S">S
+        		<audio src={hiHat2} className="clip" id="S"  preload="auto"/>
         	</div>
-        	<div className={"drum-pad active-" + this.state.d} onMouseDown={() => {this.handleMouseDown("d")}} onMouseUp={this.handleMouseUp} id="dp-d">D
-        		<audio src={kick} className="clip" id="d"  preload="auto"/>
+        	<div className={"drum-pad active-" + this.state.D} onMouseDown={() => {this.handleMouseDown("D")}} onMouseUp={this.handleMouseUp} id="dp-D">D
+        		<audio src={kick} className="clip" id="D"  preload="auto"/>
         	</div>
-        	<div className={"drum-pad active-" + this.state.z} onMouseDown={() => {this.handleMouseDown("z")}} onMouseUp={this.handleMouseUp} id="dp-z">Z
-        		<audio src={lowTom1} className="clip" id="z"  preload="auto"/>
+        	<div className={"drum-pad active-" + this.state.Z} onMouseDown={() => {this.handleMouseDown("Z")}} onMouseUp={this.handleMouseUp} id="dp-Z">Z
+        		<audio src={lowTom1} className="clip" id="Z"  preload="auto"/>
         	</div>
-        	<div className={"drum-pad active-" + this.state.x} onMouseDown={() => {this.handleMouseDown("x")}} onMouseUp={this.handleMouseUp} id="dp-x">X
-        		<audio src={lowTom2} className="clip" id="x"  preload="auto"/>
+        	<div className={"drum-pad active-" + this.state.X} onMouseDown={() => {this.handleMouseDown("x")}} onMouseUp={this.handleMouseUp} id="dp-X">X
+        		<audio src={lowTom2} className="clip" id="X"  preload="auto"/>
         	</div>
-        	<div className={"drum-pad active-" + this.state.c} onMouseDown={() => {this.handleMouseDown("c")}} onMouseUp={this.handleMouseUp} id="dp-c">C
-        		<audio src={snare} className="clip" id="c"  preload="auto"/>
+        	<div className={"drum-pad active-" + this.state.C} onMouseDown={() => {this.handleMouseDown("C")}} onMouseUp={this.handleMouseUp} id="dp-C">C
+        		<audio src={snare} className="clip" id="C"  preload="auto"/>
         	</div>
         </div>
 
-        <label htmlFor="volume">Volume</label>
-    	<input type="range" id="start" name="volume" min="0" max="10" onChange={this.handleSlide}/>
-
+        <div className="slider-container">
+        	<label htmlFor="volume">Volume</label>
+    		<input className="slider" type="range" id="start" name="volume" min="0" max="10" onChange={this.handleSlide}/>
+    	</div>
+      
       </div>
     );
   }

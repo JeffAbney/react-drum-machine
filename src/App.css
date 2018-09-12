@@ -1,7 +1,18 @@
+:root {
+	--dark: #011627;
+	--red: #ff3366;
+	--light-blue: #2ec4b6;
+	--white: #f6f7f8;
+	--blue: #20a4f3;
+
+}
+
 #root{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: var(--dark);
+	height: 100vh;
 }
 .App {
   display: flex;
@@ -11,8 +22,7 @@
   text-align: center;
   height: 400px;
   width: 300px;
-  background-color: grey;
-  margin-top: 50px;
+  background-color: var(--white);
 }
 
 .header{
@@ -28,7 +38,10 @@
 	width: 40px;
 	border-radius: 50%;
 	border: none;
+	font-size: 18px;
+	font-family: 'Inconsolata', monospace;
 	color: #000;
+	border: 1px solid var(--dark);
 }
 
 .display{
@@ -37,7 +50,10 @@
 	align-items: center;
 	height: 40px;
 	width: 125px;
-	background-color: green;
+	background-color: var(--light-blue);
+	font-size: 20px;
+	font-family: 'Inconsolata', monospace;
+	border: 1px solid var(--dark);
 }
 
 .drum-pad-container{
@@ -51,19 +67,24 @@
 }
 
 .drum-pad {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 65px;
 	width: 65px;
-	background-color: blue;
-	border-top: 3px solid grey;
-	border-right: 4px solid darkblue;
-	border-bottom: 3px solid black;
-	border-left: 4px solid grey;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 24px;
+	background-color: var(--blue);
+	border-top: 3px solid var(--white);
+	border-right: 4px solid var(--dark);
+	border-bottom: 3px solid var(--dark);
+	border-left: 4px solid var(--white);
 }
 	.active-true{
-		border-top: 5px solid grey;
-		border-right: 4px solid grey;
-		border-bottom: 3px solid grey;
-		border-left: 6px solid grey;
+		border-top: 5px solid var(--white);
+		border-right: 4px solid var(--white);
+		border-bottom: 3px solid var(--white);
+		border-left: 6px solid var(--white);
 	}
 	#dp-q{
 		grid-area: q;
@@ -101,40 +122,40 @@
 		grid-area: c;
 	}
 
-	.slidecontainer {
+	.slider-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
     width: 90%;
+    margin-top: 10px;
+    font-family: 'Inconsolata', monospace;
+    font-size: 22px;
 }
 
 .slider {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
     width: 100%; /* Full-width */
-    height: 25px; /* Specified height */
-    background: #d3d3d3; /* Grey background */
+    height: 20px; /* Specified height */
+    background: var(--dark); /* Grey background */
     outline: none; /* Remove outline */
-    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-    transition: opacity .2s;
+    margin-top: 10px;
 }
 
-/* Mouse-over effects */
-.slider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
-}
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #4CAF50; /* Green background */
+    width: 15px; /* Set a specific slider handle width */
+    height: 15px; /* Slider handle height */
+    background: #2ec4b6; /* Green background */
     cursor: pointer; /* Cursor on hover */
 }
 
 .slider::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #4CAF50; /* Green background */
+    width: 15px; /* Set a specific slider handle width */
+    height: 15px; /* Slider handle height */
+    background: #2ec4b6; /* Green background */
     cursor: pointer; /* Cursor on hover */
 }
