@@ -58,7 +58,7 @@ class App extends Component {
   }
   	componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyPress);
-    document.addEventListener('keyup', this.handleKeyUp);
+    document.removeEventListener('keyup', this.handleKeyUp);
   }
 
 	handleMouseDown(key){
@@ -100,31 +100,22 @@ class App extends Component {
 				input: this.drumKey[event.key],
 				[event.key]: true,
 			});
-			document.getElementById(event.key).volume = this.state.volume;
 			document.getElementById(event.key).pause();
 			document.getElementById(event.key).currentTime =0;
 			document.getElementById(event.key).play();
 			
 			} else{ }	
-		} else {
-			this.setState({
-				input: "Power is off",
-			})
-		}
+		} else { }
 	}
+		
+	
 
 	togglePower(){
-		if(this.state.power){
+
 			this.setState({
 				power: !this.state.power,
-				input: "Power is off"
+				input: this.state.power ? "Power is off"  : "Power is on",
 			});
-		} else {
-			this.setState({
-				power: !this.state.power,
-				input: "Power is on"
-			});
-		}
 	}
 
 	handleSlide(event){
@@ -161,7 +152,7 @@ class App extends Component {
         </div> 
         <div className="drum-pad-container">
         	<div className={"drum-pad active-" + this.state.Q} onMouseDown={() => {this.handleMouseDown("Q")}} onMouseUp={this.handleMouseUp} id="dp-Q">Q
-        		<audio src={clap} className="clip" id="Q" preload="auto" volume="0.1" />
+        		<audio src={clap} className="clip" id="Q" preload="auto" volume={this.state.volume} />
         	</div>
         	<div className={"drum-pad active-" + this.state.W} onMouseDown={() => {this.handleMouseDown("W")}} onMouseUp={this.handleMouseUp} id="dp-W">W
         		<audio src={hiHat} className="clip" id="W" preload="auto" volume="0.1"/>
@@ -181,7 +172,7 @@ class App extends Component {
         	<div className={"drum-pad active-" + this.state.Z} onMouseDown={() => {this.handleMouseDown("Z")}} onMouseUp={this.handleMouseUp} id="dp-Z">Z
         		<audio src={lowTom1} className="clip" id="Z"  preload="auto"/>
         	</div>
-        	<div className={"drum-pad active-" + this.state.X} onMouseDown={() => {this.handleMouseDown("x")}} onMouseUp={this.handleMouseUp} id="dp-X">X
+        	<div className={"drum-pad active-" + this.state.X} onMouseDown={() => {this.handleMouseDown("X")}} onMouseUp={this.handleMouseUp} id="dp-X">X
         		<audio src={lowTom2} className="clip" id="X"  preload="auto"/>
         	</div>
         	<div className={"drum-pad active-" + this.state.C} onMouseDown={() => {this.handleMouseDown("C")}} onMouseUp={this.handleMouseUp} id="dp-C">C
