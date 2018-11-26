@@ -193,6 +193,11 @@ class App extends Component {
           </div>
         </div> 
         <div className="drum-pad-container">
+          <div className="line-container">
+            <img className="line" id="line-qwe" src={lineMb}/>
+            <img className="line" id="line-asd" src={lineMb}/>
+            <img className="line" id="line-zxc" src={lineMb}/>
+          </div>
           <div className="star-container">
             <img className='star' id="star-q" src={star} alt=""/>
             <img className='star' id="star-w" src={star} alt=""/>

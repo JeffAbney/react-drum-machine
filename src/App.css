@@ -87,6 +87,23 @@
   align-items: center;
 }
 
+.line-container {
+  position: absolute;
+  display: grid;
+  grid-template:
+    "qwe" 105px
+    "asd" 105px
+    "zxc" 105px
+    /90px;
+  justify-items: center;
+  align-items: center;
+}
+
+.line {
+	width: 240px;
+	height: 10px;
+}
+
 .drum-pad {
   display: flex;
   justify-content: center;
