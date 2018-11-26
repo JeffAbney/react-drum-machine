@@ -329,6 +329,9 @@ class App extends Component {
             />
           </div>
         </div>
+        <h3 className="volume-label">
+          volume
+        </h3>
         <div className="slider-container">
           <input 
             className="slider" 

@@ -211,6 +211,10 @@
     grid-area: sc;
   }
 
+.volume-label {
+	display: none;
+}
+
 .slider-container {
   display: flex;
   flex-direction: column;
@@ -280,3 +284,76 @@
 	animation-duration: .5s;
 	animation-timing-function: ease;
 }
+
+/* ------------- Desktop Version ----------- */
+
+@media only screen and (min-width: 768px) {
+
+  .power-btn {
+  	margin-right: 20px;
+  	margin-left: 20px;
+  }
+
+  .drum-pad-container {
+    position: relative;
+    display: grid;
+    grid-template:
+      "q w e a s d z x c" 105px
+      /90px 90px 90px 90px 90px 90px 90px 90px 90px;
+    justify-items: center;
+    align-items: center;
+  }
+
+    #dp-q, #dp-c {
+      height: 70px;
+      width: 70px;
+      font-size: 36px;
+    }
+
+    #dp-w, #dp-x {
+      height: 60px;
+      width: 60px;
+      font-size: 30px;
+    }
+
+    #dp-e, #dp-z {
+      height: 50px;
+      width: 50px;
+      font-size: 24px;
+    }
+
+    #dp-a, #dp-d  {
+      height: 40px;
+      width: 40px;
+      font-size: 18px;
+    }
+
+    #dp-s {
+      height: 36px;
+      width: 36px;
+      font-size: 16px;
+    }
+
+  .star-container {
+    position: absolute;
+    display: grid;
+    grid-template:
+      "sq sw se sa ss sd sz sx sc" 105px
+      /90px 90px 90px 90px 90px 90px 90px 90px 90px;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .line-container {
+    display: flex;
+  }  
+
+  .volume-label {
+  	display: initial;
+  	font-size: 28px;
+  	font-weight: 300;
+  	color: #fff;
+    margin-bottom: 10px;
+    margin-top: 50px;
+  }
+} 
