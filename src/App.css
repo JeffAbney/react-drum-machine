@@ -1,161 +1,265 @@
 :root {
-	--dark: #011627;
-	--red: #ff3366;
-	--light-blue: #2ec4b6;
-	--white: #f6f7f8;
-	--blue: #20a4f3;
-
+  --light-blue: #26ACEB;
+  --dark-blue: #103E6F;
+  --pink: #ED0B59;
+  --dark-pink: #B20540;
+  --yellow: #F8E71C;
 }
 
-#root{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: var(--dark);
-	height: 100vh;
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('./images/mobile-bg.png');
+  height: 100vh;
+  font-family: 'Paytone One', sans-serif;
 }
+
 .App {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   text-align: center;
   height: 400px;
   width: 300px;
-  background-color: var(--white);
+  margin-top: -100px;
 }
 
-.header{
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	width: 100%;
-	margin: 35px 15px 25px 15px;
+.title {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
-.power-btn{
-	height: 40px;
-	width: 40px;
-	border-radius: 50%;
-	border: none;
-	font-size: 18px;
-	font-family: 'Inconsolata', monospace;
-	color: #000;
-	border: 1px solid var(--dark);
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin: 0 15px 15px 15px;
 }
 
-.display{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 40px;
-	width: 125px;
-	background-color: var(--light-blue);
-	font-size: 20px;
-	font-family: 'Inconsolata', monospace;
-	border: 1px solid var(--dark);
+.power-btn {
+  height: 60px;
+  width: 60px;
+  margin: 5px 5px 25px 5px;
+  border-radius: 50%;
+  border: none;
+  font-size: 20px;
+  font-family: 'Paytone One', sans-serif;
+  color: var(--dark-blue);
 }
 
-.drum-pad-container{
-	display: grid;
-	grid-template:
-		"q w e" 75px
-		"a s d" 75px
-		"z x c" 75px
-		/75px 75px 75px;
+.display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 125px;
+  font-size: 20px;
+  font-family: 'Paytone One', sans-serif;
+}
 
+.drum-pad-container {
+  position: relative;
+  display: grid;
+  grid-template:
+    "q w e" 105px
+    "a s d" 105px
+    "z x c" 105px
+    /90px 90px 90px;
+  justify-items: center;
+  align-items: center;
+}
+
+.star-container {
+  position: absolute;
+  display: grid;
+  grid-template:
+    "sq sw se" 105px
+    "sa ss sd" 105px
+    "sz sx sc" 105px
+    /90px 90px 90px;
+  justify-items: center;
+  align-items: center;
 }
 
 .drum-pad {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 65px;
-	width: 65px;
-	font-family: 'Josefin Sans', sans-serif;
-	font-size: 24px;
-	background-color: var(--blue);
-	border-top: 3px solid var(--white);
-	border-right: 4px solid var(--dark);
-	border-bottom: 3px solid var(--dark);
-	border-left: 4px solid var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 60px;
+  font-family: 'Paytone One', sans-serif;
+  font-size: 24px;
+  background-color: var(--pink);
+  color: #fff;
+  border-radius: 50%;
+  margin: auto;
+  z-index: 100;
 }
-	.active-true{
-		border-top: 5px solid var(--white);
-		border-right: 4px solid var(--white);
-		border-bottom: 3px solid var(--white);
-		border-left: 6px solid var(--white);
-	}
-	#dp-q{
-		grid-area: q;
-	}
 
-	#dp-w{
-		grid-area: w;
-	}
+.drum-pad:Hover {
+  border: 5px solid var(--dark-pink);
+}
 
-	#dp-e{
-		grid-area: e;
-	}
 
-	#dp-a{
-		grid-area: a;
-	}
+  .active-true {
+    border-top: 5px solid var(--white);
+    border-right: 4px solid var(--white);
+    border-bottom: 3px solid var(--white);
+    border-left: 6px solid var(--white);
+  }
+  #dp-q {
+    grid-area: q;
+  }
 
-	#dp-s{
-		grid-area: s;
-	}
+  #dp-w {
+    grid-area: w;
+  }
 
-	#dp-d{
-		grid-area: d;
-	}
+  #dp-e {
+    grid-area: e;
+  }
 
-	#dp-z{
-		grid-area: z;
-	}
+  #dp-a {
+    grid-area: a;
+  }
 
-	#dp-x{
-		grid-area: x;
-	}
+  #dp-s {
+    grid-area: s;
+  }
 
-	#dp-c{
-		grid-area: c;
-	}
+  #dp-d {
+    grid-area: d;
+  }
 
-	.slider-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-    width: 90%;
-    margin-top: 10px;
-    font-family: 'Inconsolata', monospace;
-    font-size: 22px;
+  #dp-z {
+    grid-area: z;
+  }
+
+  #dp-x {
+    grid-area: x;
+  }
+
+  #dp-c {
+    grid-area: c;
+  }
+
+  /*------------------- Stars CSS ------------------- */
+
+  .star {
+  	height: 100px;
+  	width: 100px;
+  	z-index: 10;
+  	display: none;
+  }
+
+  #star-q {
+    grid-area: sq;
+  }
+
+  #star-w {
+    grid-area: sw;
+  }
+
+  #star-e {
+    grid-area: se;
+  }
+
+  #star-a {
+    grid-area: sa;
+  }
+
+  #star-s {
+    grid-area: ss;
+  }
+
+  #star-d {
+    grid-area: sd;
+  }
+
+  #star-z {
+    grid-area: sz;
+  }
+
+  #star-x {
+    grid-area: sx;
+  }
+
+  #star-c {
+    grid-area: sc;
+  }
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin-top: 10px;
+  font-family: 'Paytone One', sans-serif;
+  font-size: 22px;
 }
 
 .slider {
-    -webkit-appearance: none;  /* Override default CSS styles */
-    appearance: none;
-    width: 100%; /* Full-width */
-    height: 20px; /* Specified height */
-    background: var(--dark); /* Grey background */
-    outline: none; /* Remove outline */
-    margin-top: 10px;
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 20px; /* Specified height */
+  background: none; /* Grey background */
+  outline: none; /* Remove outline */
+  margin-top: 10px;
 }
 
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
-    appearance: none;
-    width: 15px; /* Set a specific slider handle width */
-    height: 15px; /* Slider handle height */
-    background: #2ec4b6; /* Green background */
-    cursor: pointer; /* Cursor on hover */
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: var(--yellow); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 50%;
+  border: none;
 }
 
 .slider::-moz-range-thumb {
-    width: 15px; /* Set a specific slider handle width */
-    height: 15px; /* Slider handle height */
-    background: #2ec4b6; /* Green background */
-    cursor: pointer; /* Cursor on hover */
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: var(--yellow); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 50%;
+  border: none;
+}
+
+.slider::-webkit-slider-runnable-track {
+  background-color: var(--light-blue);
+  height: 7px;
+}
+
+.slider::-moz-range-track {
+  background-color: var(--light-blue);
+  height: 7px;
+}
+
+.slider::-ms-track {
+  background-color: var(--light-blue);
+  height: 7px;
+}
+
+/* ------------ Star Animation ----------------- */
+
+@keyframes starPop {
+	0% {height: 60px; width: 60px;}
+	50% {height: 120px; width: 120px;}
+	100% {height: 60px; width: 60px;}
+}
+
+.star-animation {
+	display: initial;
+	animation-name: starPop;
+	animation-duration: .5s;
+	animation-timing-function: ease;
 }
